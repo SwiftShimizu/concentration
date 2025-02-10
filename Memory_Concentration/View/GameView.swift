@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  GameView.swift
 //  Memory_Concentration
 //
 //  Created by on 2025/02/02.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct GameView: View {
     @ObservedObject var viewModel: MemoryGameViewModel
     
     // カード表示のグリッドレイアウト設定（カードサイズに応じて調整）

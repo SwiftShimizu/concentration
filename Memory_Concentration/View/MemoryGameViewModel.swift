@@ -18,7 +18,8 @@ class MemoryGameViewModel: ObservableObject {
     
     // ゲーム内のカード一覧
     var cards: [MemoryGame.Card] {
-        model.cards
+        Logger.info("\(model.cards)")
+        return model.cards
     }
     
     // 初期化（指定したペア数とカード内容の配列でゲーム開始）

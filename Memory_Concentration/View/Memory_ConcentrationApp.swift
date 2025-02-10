@@ -16,7 +16,10 @@ struct Memory_ConcentrationApp: App {
                 .text("🍎"), .text("🍊"), .text("🍇"), .text("🍓"), .text("🍒")
             ]
             // ペア数は、cardContents の数を超えないように設定（ここでは4ペア）
-            ContentView(viewModel: MemoryGameViewModel(pairs: 4, cardContents: cardContents))
+            GameView(viewModel: MemoryGameViewModel(pairs: 4, cardContents: cardContents))
+//                .onAppear {
+//                    Logger.debug(cardContents)
+//                }
         }
     }
 }

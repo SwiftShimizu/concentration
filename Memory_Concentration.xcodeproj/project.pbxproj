@@ -16,6 +16,11 @@
 			path = Memory_Concentration;
 			sourceTree = "<group>";
 		};
+		E694D3A92D5A271D00DE212F /* Utils */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				E655C50C2D4F7CA0006A1115 /* Memory_Concentration */,
+				E694D3A92D5A271D00DE212F /* Utils */,
 				E655C50B2D4F7CA0006A1115 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +68,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				E655C50C2D4F7CA0006A1115 /* Memory_Concentration */,
+				E694D3A92D5A271D00DE212F /* Utils */,
 			);
 			name = Memory_Concentration;
 			packageProductDependencies = (

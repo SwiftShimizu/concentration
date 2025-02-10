@@ -30,6 +30,7 @@ struct MemoryGame {
     
     // カードを選択したときの処理（２枚目の場合は一致判定）
     mutating func choose(_ card: Card) -> Bool {
+        Logger.info(card)
         if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }),
            !cards[chosenIndex].isFaceUp,
            !cards[chosenIndex].isMatched {
