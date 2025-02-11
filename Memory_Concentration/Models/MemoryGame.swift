@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct MemoryGame {
     
@@ -21,6 +22,20 @@ struct MemoryGame {
     enum CardContent: Equatable {
         case text(String)
         case image(String)
+        case uiImage(UIImage, identifier: String)
+        
+        static func ==(lhs: MemoryGame.CardContent, rhs: MemoryGame.CardContent) -> Bool {
+            switch (lhs, rhs) {
+            case (.text(let a), .text(let b)):
+                return a == b
+            case (.image(let a), .image(let b)):
+                return a == b
+            case (.uiImage(_, let idA), .uiImage(_, let idB)):
+                return idA == idB
+            default:
+                return false
+            }
+        }
     }
     
     // ゲーム内のカード配列

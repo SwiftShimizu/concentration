@@ -9,15 +9,27 @@ import SwiftUI
 
 struct GameView: View {
     @ObservedObject var viewModel: MemoryGameViewModel
+    @State private var showingPhotoPicker = false
+    @State private var selectedImages: [UIImage] = []
     
     // カード表示のグリッドレイアウト設定（カードサイズに応じて調整）
     let columns: [GridItem] = [GridItem(.adaptive(minimum: 80))]
     
     var body: some View {
         VStack {
-            Text("Current Turn: \(viewModel.currentPlayerName)")
-                .font(.headline)
-                .padding()
+            HStack {
+                Text("Current Turn: \(viewModel.currentPlayerName)")
+                    .font(.headline)
+                Spacer()
+                Button(action: {
+                    showingPhotoPicker = true
+                }) {
+                    Image(systemName: "photo.on.rectangle")
+                        .font(.title)
+                }
+            }
+            .padding()
+            
             LazyVGrid(columns: columns, spacing: 10) {
                 ForEach(viewModel.cards) { card in
                     CardView(card: card)
@@ -28,6 +40,19 @@ struct GameView: View {
             }
             .padding()
         }
+        .sheet(isPresented: $showingPhotoPicker) {
+            // 写真ピッカーが閉じられたときに、選択された画像を元にゲームを再スタート
+            if !selectedImages.isEmpty {
+                let cardContents: [MemoryGame.CardContent] = selectedImages.map { image in
+                        .uiImage(image, identifier: UUID().uuidString)
+                }
+                viewModel.restartGame(pairs: cardContents.count, cardContents: cardContents)
+                selectedImages.removeAll()
+            }
+        } content: {
+            PhotoPickerView(selectedImages: $selectedImages)
+        }
+
     }
 }
 
@@ -59,6 +84,10 @@ struct CardView: View {
                 .font(.largeTitle)
         case .image(let imageName):
             Image(imageName)
+                .resizable()
+                .scaledToFit()
+        case .uiImage(let image, identifier: _):
+            Image(uiImage: image)
                 .resizable()
                 .scaledToFit()
         }
